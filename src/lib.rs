@@ -1,6 +1,11 @@
 #[doc = include_str!("../README.md")]
 
-/// Say hi to the entire world :)
-pub fn greet() {
-	println!("Hello World!");
+struct Node {
+    character: char,
+    next: Vec<Option<Box<Dfa>>>,
 }
+
+struct Dfa {
+    head: Vec<Option<Box<Dfa>>>,
+}
+
