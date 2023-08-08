@@ -1,56 +1,41 @@
 #[doc = include_str!("../README.md")]
+use std::collections::HashMap;
+
+struct Node {
+	node_number: u32,
+	edges: HashMap<char, Option<Box<Node>>>,
+}
 
 struct Dfa {
-	character: char,
-	next: Vec<Option<Box<Dfa>>>,
+	node_count: u32,
+	table: Vec<Option<Box<Node>>>,
 }
 
 impl Dfa {
-	fn new_node(dfa_character: char) -> Self {
-		Self {
-			character: dfa_character,
-			next: Vec::with_capacity(1)
+	fn new_node(num: u32) -> Node {
+		Node {
+			node_number: num,
+			edges: HashMap::new(),
 		}
 	}
 
-	fn new(&mut self, init_string: &str) {
-		let head: Box<Dfa> = Box::new(Dfa::new_node(match init_string.chars().nth(0) {
-			Some(char) => char,
-			None => panic!("Unable to parse init string"),
-		}));
+	fn look_up_where_to_insert_node(self, node_to_insert: Node) -> u32 {
+		todo!("Function should tell us where to insert the node")
+	}
 
-        //Todo: for each following character in our string
-        //create a next node
-        for c in init_string.chars().skip(1) {
-            match self.next[0] {
-                Some( ref mut x ) => println!("fdasf"),
-                None => println!("fdasf")
-            }
-        }
-        /*
-            match self.head {
-            None => self.head = Some(new_node),
-            Some(ref mut node) => {
-                let mut current = node;
-                while let Some(ref mut next_node) = current.next {
-                    current = next_node;
-                }
-                current.next = Some(new_node);
-            }
-        }
-        */
+	pub fn new(self, init_string: &str) -> Self {
+		Self {
+			node_count: 0,
+			table: Vec::with_capacity(100),
+		}
+	}
 
+	pub fn new_regex(&mut self, regex_string: &str) {
+		let first_char = match regex_string.chars().nth(0) {
+			Some(character) => character,
+			None => panic!("Unable to parse string"),
+		};
+		let init_node: Node = Dfa::new_node(self.node_count + 1);
+		todo!("we should check where to insert our node, insert it then do the same for the rest of character");
 	}
 }
-
-
-
-
-
-
-/*
-    let temp = head;
-    while temp.next != null {
-        temp = temp.next
-    }
-*/
