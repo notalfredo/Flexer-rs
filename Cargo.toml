@@ -16,12 +16,15 @@ exclude = [
 	".devcontainer",
 	".github",
 	".vscode",
+	".idea",
 	"deny.toml",
 	".commitlintrc.json",
 	"package.json",
 	"package-lock.json",
+	"fuzz",
+	"book",
+	"benches",
 ]
-
 [dev-dependencies]
 criterion = { version = "0.4.0", features = ["html_reports"] }
 iai = "0.1.0"
